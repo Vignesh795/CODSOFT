@@ -1,41 +1,20 @@
-# Titanic Survival Prediction 🚢
+# CODSOFT Data Science Internship
 
-## 📌 Project Overview
-This project predicts whether a passenger survived the Titanic disaster using machine learning.
+This repository contains the projects completed during the CodSoft Data Science Internship.
 
-## 📊 Dataset
-The dataset includes passenger details such as:
-- Age
-- Gender
-- Ticket Class
-- Fare
-- Embarked location
+Projects Completed:
 
-Dataset Source:
-Kaggle Titanic Dataset
+1. Titanic Survival Prediction
+Predict whether a passenger survived using machine learning.
 
-## 🛠 Technologies Used
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
+2. Movie Rating Prediction
+Predict movie ratings using regression techniques.
 
-## 🤖 Model Used
-Logistic Regression
+3. Iris Flower Classification
+Classify iris flower species using machine learning algorithms.
 
-## 📈 Model Accuracy
-The model achieved approximately 80% accuracy on test data.
-
-## 📎 Steps Performed
-1. Data Cleaning
-2. Handling Missing Values
-3. Label Encoding
-4. Train-Test Split
-5. Model Training
-6. Model Evaluation
-
-## 📌 Conclusion
-The model successfully predicts passenger survival with good accuracy. 
-Further improvements can be made using advanced models like Random Forest.
+Technologies Used:
+Python
+Pandas
+Scikit-learn
+Machine Learning
