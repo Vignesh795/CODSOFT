@@ -1,4 +1,4 @@
-# Titanic Survival Prediction (Fixed)
+# Titanic Survival Prediction 
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -35,4 +35,5 @@ model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
 # Accuracy
+
 print("Titanic Model Accuracy:", accuracy_score(y_test, predictions))
