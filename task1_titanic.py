@@ -1,39 +1,30 @@
-# Titanic Survival Prediction 
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 
-# Load dataset
-data = pd.read_csv("Titanic-Dataset.csv")
+titanic_df = pd.read_csv("Titanic-Dataset.csv")
 
-# Select useful columns
-data = data[['Survived','Pclass','Sex','Age','Fare']]
+titanic_df = titanic_df[["Survived", "Pclass", "Sex", "Age", "Fare"]]
 
-# Convert Sex column to numbers
-data['Sex'] = data['Sex'].map({'male':0,'female':1})
+titanic_df["Sex"] = titanic_df["Sex"].replace({"male": 0, "female": 1})
 
-# Fill missing values
-data['Age'] = data['Age'].fillna(data['Age'].mean())
-data['Fare'] = data['Fare'].fillna(data['Fare'].mean())
+titanic_df["Age"] = titanic_df["Age"].fillna(titanic_df["Age"].mean())
+titanic_df["Fare"] = titanic_df["Fare"].fillna(titanic_df["Fare"].mean())
 
-# Remove any remaining NaN rows
-data = data.dropna()
+titanic_df = titanic_df.dropna()
 
-# Split data
-X = data[['Pclass','Sex','Age','Fare']]
-y = data['Survived']
+X = titanic_df[["Pclass", "Sex", "Age", "Fare"]]
+y = titanic_df["Survived"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Train model
-model = LogisticRegression(max_iter=1000)
-model.fit(X_train, y_train)
+lr_model = LogisticRegression(max_iter=1000)
 
-# Predict
-predictions = model.predict(X_test)
+lr_model.fit(X_train, y_train)
 
-# Accuracy
+predicted_values = lr_model.predict(X_test)
 
-print("Titanic Model Accuracy:", accuracy_score(y_test, predictions))
+acc = accuracy_score(y_test, predicted_values)
+
+print("Titanic Prediction Accuracy:", acc)
