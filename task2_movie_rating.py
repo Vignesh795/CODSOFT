@@ -1,38 +1,33 @@
-# Movie Rating Prediction
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 
-# Load dataset
-data = pd.read_csv("Movies task 2.csv", encoding="latin1")
+movie_df = pd.read_csv("Movies task 2.csv", encoding="latin1")
 
-# Select important columns
-data = data[['Year','Duration','Rating']]
+movie_df = movie_df[["Year", "Duration", "Rating"]]
 
-# Remove missing values
-data = data.dropna()
+movie_df = movie_df.dropna()
 
-# Convert text values
-data['Year'] = data['Year'].str.replace("(","").str.replace(")","")
-data['Duration'] = data['Duration'].str.replace(" min","")
+movie_df["Year"] = movie_df["Year"].str.replace("(", "")
+movie_df["Year"] = movie_df["Year"].str.replace(")", "")
 
-data['Year'] = data['Year'].astype(int)
-data['Duration'] = data['Duration'].astype(int)
+movie_df["Duration"] = movie_df["Duration"].str.replace(" min", "")
 
-# Split data
-X = data[['Year','Duration']]
-y = data['Rating']
+movie_df["Year"] = movie_df["Year"].astype(int)
+movie_df["Duration"] = movie_df["Duration"].astype(int)
+
+X = movie_df[["Year", "Duration"]]
+y = movie_df["Rating"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-# Train model
-model = LinearRegression()
-model.fit(X_train, y_train)
+reg_model = LinearRegression()
 
-# Prediction
-pred = model.predict(X_test)
+reg_model.fit(X_train, y_train)
 
-# Error
-print("Movie Rating Model Error:", mean_squared_error(y_test, pred))
+rating_pred = reg_model.predict(X_test)
+
+error = mean_squared_error(y_test, rating_pred)
+
+print("Movie Rating Model Error:", error)
