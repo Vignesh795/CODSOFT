@@ -1,26 +1,21 @@
-# Iris Flower Classification
-
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
-# Load dataset
-data = pd.read_csv("IRIS task 3.csv")
+iris_df = pd.read_csv("IRIS task 3.csv")
 
-# Features and target
-X = data[['sepal_length','sepal_width','petal_length','petal_width']]
-y = data['species']
+features = iris_df[["sepal_length", "sepal_width", "petal_length", "petal_width"]]
+target = iris_df["species"]
 
-# Split dataset
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(features, target, test_size=0.2)
 
-# Train model
-model = RandomForestClassifier()
-model.fit(X_train, y_train)
+rf_model = RandomForestClassifier()
 
-# Prediction
-pred = model.predict(X_test)
+rf_model.fit(X_train, y_train)
 
-# Accuracy
-print("Iris Model Accuracy:", accuracy_score(y_test, pred))
+pred = rf_model.predict(X_test)
+
+result = accuracy_score(y_test, pred)
+
+print("Iris Classification Accuracy:", result)
